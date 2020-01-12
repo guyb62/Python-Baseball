@@ -3,9 +3,6 @@ import glob
 import pandas as pd
 
 game_files = glob.glob(os.path.join(os.getcwd(), 'games', '*.EVE'))
-
-# game_files now contians all files with extension .EVE in games folder
-# sort files for pandas
 game_files.sort()
 
 game_frames = []
@@ -21,7 +18,7 @@ identifiers = identifiers.fillna(method='ffill')
 identifiers.columns =  ['game_id', 'year']
 
 games = pd.concat([games, identifiers], axis=1, sort=False)
-games = games.fillna('') # replaces NaN values with ''
+games = games.fillna(' ') # replaces NaN values with ''
 # loc([row],[column])
 games.loc[:, ['type']] = pd.Categorical(games.loc[:, ['type']])
 
